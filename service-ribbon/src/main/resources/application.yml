@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: cloudlearn-eureka-service-ribbon
+server:
+  port: 7003
+
+eureka:
+  # 声明Eureka客户端需要注册到的服务端的地址
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
