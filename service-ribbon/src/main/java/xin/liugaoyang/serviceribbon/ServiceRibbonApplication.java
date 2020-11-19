@@ -1,18 +1,25 @@
 package xin.liugaoyang.serviceribbon;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.web.client.RestTemplate;
 
 @EnableEurekaClient
 @SpringBootApplication
+@Slf4j
 public class ServiceRibbonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceRibbonApplication.class, args);
+        SpringApplication app = new SpringApplication(ServiceRibbonApplication.class);
+        Environment env = app.run(args).getEnvironment();
+
+        log.info("启动成功！");
+        log.info("RIBBON Client地址：http:127.0.0.1:{}", env.getProperty("server.port"));
     }
 
     /**
